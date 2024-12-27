@@ -1,13 +1,12 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-B2VwMapJ.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
+    "file": "assets/app-8f2bd48a.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DI6-W-r-.js",
-    "name": "app",
-    "src": "resources/js/app.js",
-    "isEntry": true
+    "file": "assets/app-037c606c.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
   }
 }
