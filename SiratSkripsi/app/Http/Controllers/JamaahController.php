@@ -12,7 +12,8 @@ class JamaahController extends Controller
 {
     use HasFactory;
 
-    protected $table = 'table_data_jamaah';
+    // protected $table = 'table_data_jamaah';
+    protected $table = 'jamaahs';
     public function index()
 {
     $data_jamaahs = TableDataJamaah::all();

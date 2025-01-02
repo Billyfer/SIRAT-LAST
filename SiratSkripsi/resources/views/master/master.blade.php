@@ -110,14 +110,86 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../widgets.html" class="nav-link">
+                            <a href="{{ url('/jamaah') }}"
+                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Widgets
-                                    <span class="right badge badge-danger">New</span>
+                                    Jamaah
+                                    {{-- <span class="right badge badge-danger"></span> --}}
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/paket') }}"
+                                class="nav-link {{ Request::route()->getName() == 'paket.index' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Paket
+                                    {{-- <span class="right badge badge-danger"></span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/karyawan') }}"
+                                class="nav-link {{ Request::route()->getName() == 'karyawan.index' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Karyawan
+                                    {{-- <span class="right badge badge-danger"></span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/jamaah') }}"
+                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Refferal
+                                    {{-- <span class="right badge badge-danger"></span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/jamaah') }}"
+                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Paket Umrah
+                                    {{-- <span class="right badge badge-danger"></span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/jamaah') }}"
+                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Fasilitas
+                                    {{-- <span class="right badge badge-danger"></span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/jamaah') }}"
+                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Surat
+                                    {{-- <span class="right badge badge-danger"></span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/jamaah') }}"
+                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Pembayaran
+                                    {{-- <span class="right badge badge-danger"></span> --}}
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>

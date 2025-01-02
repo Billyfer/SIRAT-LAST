@@ -9,7 +9,7 @@ class TableDataJamaah extends Model
 {
     use HasFactory;
 
-    protected $table = 'data_jamaahs';
+    protected $table = 'jamaahs';
     protected $fillable = [
         'tanggal_keberangkatan',
         'tanggal_kepulangan',
