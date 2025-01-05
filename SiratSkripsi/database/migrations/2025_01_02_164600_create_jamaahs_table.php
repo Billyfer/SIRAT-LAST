@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('jamaahs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_paket')->nullable()->constrained('pakets')->onDelete('cascade');
+            $table->foreignId('id_perusahaan')->nullable()->constrained('data_perusahaans')->onDelete('cascade');
             $table->string('nama_jamaah')->nullable();
             $table->string('alamat')->nullable();
             $table->string('kartu_keluarga')->nullable();

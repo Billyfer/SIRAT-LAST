@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pakets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_perusahaan')->nullable()->constrained('data_perusahaans')->onDelete('cascade');
             $table->string('nama_paket');
             $table->date('tanggal_kepulangan');
             $table->date('tanggal_keberangkatan');
@@ -22,8 +23,7 @@ return new class extends Migration
             $table->integer('harga')->nullable();
             $table->string('pesawat')->nullable();
             $table->integer('total_seat')->nullable();
-            $table->integer('terisi')->nullable();
-            $table->integer('sisa')->nullable();
+            $table->integer('jenis_paket')->nullable();
             $table->timestamps();
         });
     }
