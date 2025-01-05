@@ -4,12 +4,13 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h2 class="text-center mb-4">Create Data Jamaah</h2>
-            <form action="{{ route('jamaah.store') }}" method="POST">
+            <h2 class="text-center mb-4">Create Data Paket</h2>
+            <form action="{{ route('paket.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="Tanggal_Keberangkatan" class="form-label">Tanggal Keberangkatan</label>
-                    <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" required>
+                    <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="Tanggal_Kepulangan" class="form-label">Tanggal Kepulangan</label>

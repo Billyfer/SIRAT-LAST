@@ -154,7 +154,7 @@
                                 class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Paket Umrah
+                                    Data Jamaah
                                     {{-- <span class="right badge badge-danger"></span> --}}
                                 </p>
                             </a>

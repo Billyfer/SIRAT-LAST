@@ -4,18 +4,18 @@
 <div class="container mt-4">
     <div class="row mb-4">
         <div class="col">
-            <h2 class="text-center">Data Jamaah</h2>
+            <h2 class="text-center">Data Paket</h2>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ route('jamaah.create') }}" class="btn btn-success">Create New Data Jamaah</a>
+            <a href="{{ route('paket.create') }}" class="btn btn-success">Create New Paket</a>
         </div>
     </div>
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -37,33 +37,33 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($data_jamaahs as $data_jamaah)
-                    <tr>
-                        <td>{{ $data_jamaah->id }}</td>
-                        <td>{{ $data_jamaah->tanggal_keberangkatan }}</td>
-                        <td>{{ $data_jamaah->tanggal_kepulangan }}</td>
-                        <td>{{ $data_jamaah->paket }}</td>
-                        <td>{{ $data_jamaah->hotel_madinah }}</td>
-                        <td>{{ $data_jamaah->hotel_mekkah }}</td>
-                        <td>{{ $data_jamaah->program }}</td>
-                        <td>{{ number_format($data_jamaah->harga, 0, ',', '.') }}</td>
-                        <td>{{ $data_jamaah->pesawat }}</td>
-                        <td>{{ $data_jamaah->total_seat }}</td>
-                        <td>{{ $data_jamaah->terisi }}</td>
-                        <td>{{ $data_jamaah->sisa }}</td>
-                        <td>
-                            <a href="{{ route('jamaah.edit', $data_jamaah->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <form action="{{ route('jamaah.destroy', $data_jamaah->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
+                @forelse($data_paket as $item)
+                <tr>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->tanggal_keberangkatan }}</td>
+                    <td>{{ $item->tanggal_kepulangan }}</td>
+                    <td>{{ $item->paket }}</td>
+                    <td>{{ $item->hotel_madinah }}</td>
+                    <td>{{ $item->hotel_mekkah }}</td>
+                    <td>{{ $item->program }}</td>
+                    <td>{{ number_format($item->harga, 0, ',', '.') }}</td>
+                    <td>{{ $item->pesawat }}</td>
+                    <td>{{ $item->total_seat }}</td>
+                    <td>{{ $item->terisi }}</td>
+                    <td>{{ $item->sisa }}</td>
+                    <td>
+                        <a href="{{ route('paket.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{ route('paket.destroy', $item->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="13" class="text-center">Tidak ada data.</td>
-                    </tr>
+                <tr>
+                    <td colspan="13" class="text-center">Tidak ada data.</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>

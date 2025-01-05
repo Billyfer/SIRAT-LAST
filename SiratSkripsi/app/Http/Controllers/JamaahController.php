@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TableDataJamaah;
+use App\Models\Jamaah;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class JamaahController extends Controller
     protected $table = 'jamaahs';
     public function index()
 {
-    $data_jamaahs = TableDataJamaah::all();
+    $data_jamaahs = Jamaah::all();
     return view('jamaah.index', compact('data_jamaahs'));
 }
 
@@ -43,7 +43,7 @@ class JamaahController extends Controller
     ]);
     
 
-    TableDataJamaah::create($validated);
+    Jamaah::create($validated);
 
     return redirect()->route('jamaah.index')
         ->with('success', 'Data Jamaah created successfully.');
@@ -52,7 +52,7 @@ class JamaahController extends Controller
 
     public function edit($id)
     {
-        $data_jamaah = TableDataJamaah::findOrFail($id);
+        $data_jamaah = Jamaah::findOrFail($id);
         return view('jamaah.edit', compact('data_jamaah'));
     }
 
@@ -72,7 +72,7 @@ class JamaahController extends Controller
             'sisa' => 'required|numeric',
         ]);
 
-        $data_jamaah = TableDataJamaah::findOrFail($id);
+        $data_jamaah = Jamaah::findOrFail($id);
         $data_jamaah->update($validated);
 
         return redirect()->route('jamaah.index')
@@ -81,7 +81,7 @@ class JamaahController extends Controller
 
     public function destroy($id)
     {
-        $data_jamaah = TableDataJamaah::findOrFail($id);
+        $data_jamaah = Jamaah::findOrFail($id);
         $data_jamaah->delete();
 
         return redirect()->route('jamaah.index')

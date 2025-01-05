@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class TableDataPerusahaan extends Model
+class Perusahaan extends Model
 {
     use HasFactory;
 
+    // Nama tabel
     protected $table = 'data_perusahaans';
+
+    // Kolom yang bisa diisi (mass assignable)
     protected $fillable = [
         'nama_cabang',
         'kota_kabupaten',
@@ -21,8 +23,15 @@ class TableDataPerusahaan extends Model
         'pdf_akta_cabang',
     ];
 
-    public function karyawans(): HasMany
+    // Relasi ke tabel `karyawans`
+    public function karyawans()
     {
-        return $this->hasMany(TableDataKaryawan::class, 'cabang_id');
+        return $this->hasMany(Karyawan::class, 'cabang_id');
+    }
+
+    // Relasi ke tabel `pakets`
+    public function pakets()
+    {
+        return $this->hasMany(Paket::class, 'id_perusahaan');
     }
 }
