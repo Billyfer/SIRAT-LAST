@@ -3,8 +3,8 @@
 @section('content')
 <div class="container mt-4">
     <div class="row mb-4">
-        <div class="col">
-            <h2 class="text-center">Data Perusahaan</h2>
+        <div class="col text-center">
+            <h2>Data Perusahaan</h2>
         </div>
     </div>
     <div class="row mb-3">
@@ -15,6 +15,10 @@
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
+        </div>
+    @elseif(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
         </div>
     @endif
     <div class="table-responsive">
@@ -45,19 +49,19 @@
                             @if($perusahaan->pdf_nib)
                                 <a href="{{ asset('storage/' . $perusahaan->pdf_nib) }}" target="_blank">View</a>
                             @else
-                                -
+                                <span class="text-muted">-</span>
                             @endif
                         </td>
                         <td>
                             @if($perusahaan->pdf_akta_cabang)
                                 <a href="{{ asset('storage/' . $perusahaan->pdf_akta_cabang) }}" target="_blank">View</a>
                             @else
-                                -
+                                <span class="text-muted">-</span>
                             @endif
                         </td>
                         <td>
                             <a href="{{ route('perusahaan.edit', $perusahaan->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <form action="{{ route('perusahaan.destroy', $perusahaan->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('perusahaan.destroy', $perusahaan->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>

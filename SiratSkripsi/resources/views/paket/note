@@ -1,0 +1,6 @@
+(jenis paket belum. jenis paket terinput dengan cara melihat dari akun dari cabang atau pusat
+jika dari cabang jenis paket tertera sesuai akun yang membuat cabang tersebut jika yang membuat karyawan cabang akan tertera jenis paket mandiri mana jika yang membuat karyawan pusat akan tertera pusat
+
+jika karyawan cabang a membuat paket, karyawan cabang b tidak bisa melihat ataupun mengedit paket tersebut
+
+namun jika paket itu berasal dari pusat paket tersebut hanya bisa di edit oleh karyawan pusat namun karyawan cabang bisa melihat paket tersebut)

@@ -18,6 +18,7 @@ class PaketController extends Controller
     public function index()
 {
     $data_paket = Paket::all();
+    $pakets = Paket::with('jamaahs')->get();
     return view('paket.index', compact('data_paket'));
 }
 
