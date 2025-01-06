@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Surat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SuratController extends Controller
 {
@@ -28,12 +29,19 @@ class SuratController extends Controller
             'id_data_perusahaans' => 'nullable|exists:data_perusahaans,id',
             'id_karyawans' => 'nullable|exists:karyawans,id',
             'keterangan' => 'required|string',
-            'dokumen_surat' => 'required|string',
+            'dokumen_surat' => 'required|file|mimes:pdf,doc,docx|max:2048',
             'note' => 'nullable|string',
         ]);
 
+        $data = $request->all();
+
+        // Upload file dokumen_surat dan simpan path
+        if ($request->hasFile('dokumen_surat')) {
+            $data['dokumen_surat'] = $request->file('dokumen_surat')->store('surat_documents', 'public');
+        }
+
         // Buat surat baru
-        $surat = Surat::create($validatedData);
+        $surat = Surat::create($data);
 
         return response()->json(['message' => 'Surat berhasil dibuat', 'data' => $surat], 201);
     }
@@ -63,19 +71,28 @@ class SuratController extends Controller
             'id_data_perusahaans' => 'nullable|exists:data_perusahaans,id',
             'id_karyawans' => 'nullable|exists:karyawans,id',
             'keterangan' => 'required|string',
-            'dokumen_surat' => 'required|string',
+            'dokumen_surat' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'note' => 'nullable|string',
         ]);
 
-        // Cari surat
         $surat = Surat::find($id);
 
         if (!$surat) {
             return response()->json(['message' => 'Surat tidak ditemukan'], 404);
         }
 
+        $data = $request->all();
+
+        // Update file dokumen_surat dan hapus file lama jika ada
+        if ($request->hasFile('dokumen_surat')) {
+            if ($surat->dokumen_surat) {
+                Storage::delete('public/' . $surat->dokumen_surat);
+            }
+            $data['dokumen_surat'] = $request->file('dokumen_surat')->store('surat_documents', 'public');
+        }
+
         // Update data surat
-        $surat->update($validatedData);
+        $surat->update($data);
 
         return response()->json(['message' => 'Surat berhasil diperbarui', 'data' => $surat]);
     }
@@ -85,14 +102,17 @@ class SuratController extends Controller
      */
     public function destroy($id)
     {
-        // Cari surat
         $surat = Surat::find($id);
 
         if (!$surat) {
             return response()->json(['message' => 'Surat tidak ditemukan'], 404);
         }
 
-        // Hapus surat
+        // Hapus file dokumen_surat jika ada
+        if ($surat->dokumen_surat) {
+            Storage::delete('public/' . $surat->dokumen_surat);
+        }
+
         $surat->delete();
 
         return response()->json(['message' => 'Surat berhasil dihapus']);

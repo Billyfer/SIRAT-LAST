@@ -2,89 +2,121 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jamaah;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Testing\Fluent\Concerns\Has;
+use App\Models\Jamaah;
+use App\Models\Paket;
+use App\Models\Perusahaan;
+use Illuminate\Support\Facades\Storage;
 
 class JamaahController extends Controller
 {
-    use HasFactory;
-
-    // protected $table = 'table_data_jamaah';
-    protected $table = 'jamaahs';
     public function index()
-{
-    $data_jamaahs = Jamaah::all();
-    return view('jamaah.index', compact('data_jamaahs'));
-}
-
+    {
+        $data_jamaah = Jamaah::with(['paket', 'perusahaan'])->get();
+        return view('jamaah.index', compact('data_jamaah'));
+    }
 
     public function create()
     {
-        return view('jamaah.create');
+        $pakets = Paket::all();
+        $perusahaans = Perusahaan::all();
+        return view('jamaah.create', compact('pakets', 'perusahaans'));
     }
 
     public function store(Request $request)
     {
-    $validated = $request->validate([
-        'tanggal_keberangkatan' => 'required|date',
-        'tanggal_kepulangan' => 'required|date',
-        'paket' => 'required|string|max:255',
-        'hotel_madinah' => 'required|string|max:255',
-        'hotel_mekkah' => 'required|string|max:255',
-        'program' => 'required|string|max:255',
-        'harga' => 'required|numeric',
-        'pesawat' => 'required|string|max:255',
-        'total_seat' => 'required|numeric',
-        'terisi' => 'required|numeric',
-        'sisa' => 'required|numeric',
-    ]);
-    
+        $request->validate([
+            'id_paket' => 'required|exists:pakets,id',
+            'id_perusahaan' => 'required|exists:perusahaans,id',
+            'nama_jamaah' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'kartu_keluarga' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'no_telpon' => 'required|string|max:15',
+            'surat_kesehatan' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'visa' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'surat_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+        ]);
 
-    Jamaah::create($validated);
+        $data = $request->all();
 
-    return redirect()->route('jamaah.index')
-        ->with('success', 'Data Jamaah created successfully.');
+        foreach (['kartu_keluarga', 'ktp', 'surat_kesehatan', 'visa', 'surat_pendukung'] as $fileField) {
+            if ($request->hasFile($fileField)) {
+                $data[$fileField] = $request->file($fileField)->store('jamaah_documents', 'public');
+            }
+        }
+
+        Jamaah::create($data);
+
+        return redirect()->route('jamaah.index')->with('success', 'Data Jamaah berhasil ditambahkan.');
     }
-
 
     public function edit($id)
     {
-        $data_jamaah = Jamaah::findOrFail($id);
-        return view('jamaah.edit', compact('data_jamaah'));
+        $jamaah = Jamaah::find($id);
+        $pakets = Paket::all();
+        $perusahaans = Perusahaan::all();
+
+        if (!$jamaah) {
+            return redirect()->route('jamaah.index')->with('error', 'Data tidak ditemukan.');
+        }
+
+        return view('jamaah.edit', compact('jamaah', 'pakets', 'perusahaans'));
     }
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'tanggal_keberangkatan' => 'required|date',
-            'tanggal_kepulangan' => 'required|date',
-            'paket' => 'required|string|max:255',
-            'hotel_madinah' => 'required|string|max:255',
-            'hotel_mekkah' => 'required|string|max:255',
-            'program' => 'required|string|max:255',
-            'harga' => 'required|numeric',
-            'pesawat' => 'required|string|max:255',
-            'total_seat' => 'required|numeric',
-            'terisi' => 'required|numeric',
-            'sisa' => 'required|numeric',
+        $jamaah = Jamaah::find($id);
+
+        if (!$jamaah) {
+            return redirect()->route('jamaah.index')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $request->validate([
+            'id_paket' => 'required|exists:pakets,id',
+            'id_perusahaan' => 'required|exists:perusahaans,id',
+            'nama_jamaah' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'kartu_keluarga' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'no_telpon' => 'required|string|max:15',
+            'surat_kesehatan' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'visa' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+            'surat_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
         ]);
 
-        $data_jamaah = Jamaah::findOrFail($id);
-        $data_jamaah->update($validated);
+        $data = $request->all();
 
-        return redirect()->route('jamaah.index')
-            ->with('success', 'Data Jamaah updated successfully');
+        foreach (['kartu_keluarga', 'ktp', 'surat_kesehatan', 'visa', 'surat_pendukung'] as $fileField) {
+            if ($request->hasFile($fileField)) {
+                if ($jamaah->$fileField) {
+                    \Storage::delete('public/' . $jamaah->$fileField);
+                }
+                $data[$fileField] = $request->file($fileField)->store('jamaah_documents', 'public');
+            }
+        }
+
+        $jamaah->update($data);
+
+        return redirect()->route('jamaah.index')->with('success', 'Data Jamaah berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $data_jamaah = Jamaah::findOrFail($id);
-        $data_jamaah->delete();
+        $jamaah = Jamaah::find($id);
 
-        return redirect()->route('jamaah.index')
-            ->with('success', 'Data Jamaah deleted successfully');
+        if (!$jamaah) {
+            return redirect()->route('jamaah.index')->with('error', 'Data tidak ditemukan.');
+        }
+
+        foreach (['kartu_keluarga', 'ktp', 'surat_kesehatan', 'visa', 'surat_pendukung'] as $fileField) {
+            if ($jamaah->$fileField) {
+                \Storage::delete('public/' . $jamaah->$fileField);
+            }
+        }
+
+        $jamaah->delete();
+
+        return redirect()->route('jamaah.index')->with('success', 'Data Jamaah berhasil dihapus.');
     }
 }
