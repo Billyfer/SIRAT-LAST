@@ -8,6 +8,7 @@ use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\SuratController;
+use App\Http\Controllers\RolesController;
 use App\Models\Referral;
 use Illuminate\Support\Facades\Route;
 
@@ -96,6 +97,16 @@ Route ::middleware(['auth', 'verified'])->group(function () {
     // Route::delete('/karyawan/{id}/delete', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
     // route::patch('/karyawan/{id}/update', [KaryawanController::class, 'update'])->name('karyawan.update');
     Route::resource('karyawan', KaryawanController::class);
+});
+
+Route ::middleware(['auth', 'verified'])->group(function () {
+    // Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
+    // Route::get('/karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create');
+    // Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
+    // Route::get('/karyawan/{id}/edit', [KaryawanController::class, 'edit'])->name('karyawan.edit');
+    // Route::delete('/karyawan/{id}/delete', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
+    // route::patch('/karyawan/{id}/update', [KaryawanController::class, 'update'])->name('karyawan.update');
+    Route::resource('roles', RolesController::class);
 });
 
 Route::middleware('auth')->group(function () {

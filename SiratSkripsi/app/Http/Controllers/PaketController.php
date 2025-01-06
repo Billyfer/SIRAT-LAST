@@ -30,17 +30,16 @@ class PaketController extends Controller
     public function store(Request $request)
     {
     $validated = $request->validate([
+        'nama_paket' => 'required|string|max:255',
         'tanggal_keberangkatan' => 'required|date',
         'tanggal_kepulangan' => 'required|date',
-        'paket' => 'required|string|max:255',
         'hotel_madinah' => 'required|string|max:255',
         'hotel_mekkah' => 'required|string|max:255',
         'program' => 'required|string|max:255',
         'harga' => 'required|numeric',
         'pesawat' => 'required|string|max:255',
         'total_seat' => 'required|numeric',
-        'terisi' => 'required|numeric',
-        'sisa' => 'required|numeric',
+        'jenis_paket' => 'required|bolean',
     ]);
     
 

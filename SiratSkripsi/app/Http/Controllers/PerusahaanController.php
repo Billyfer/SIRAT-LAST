@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TableDataPerusahaan;
+use App\Models\Perusahaan;
 
 class PerusahaanController extends Controller
 {
 
     public function index()
     {
-        $data_perusahaan = TableDataPerusahaan::all();
+        $data_perusahaan = Perusahaan::all();
         return view('perusahaan.index', compact('data_perusahaan'));
     }
 
@@ -33,7 +33,7 @@ class PerusahaanController extends Controller
             'pdf_akta_cabang' => 'required',
         ]);
 
-        TableDataPerusahaan::create($request->all());
+        Perusahaan::create($request->all());
 
         return redirect()->route('perusahaan.index')
             ->with('success', 'Data Perusahaan berhasil ditambahkan.');
@@ -42,7 +42,7 @@ class PerusahaanController extends Controller
 
     public function edit($id)
     {
-        $data_perusahaan = TableDataPerusahaan::find($id);
+        $data_perusahaan = Perusahaan::find($id);
 
         if (!$data_perusahaan) {
             return redirect()->route('perusahaan.index')->with('error', 'Data tidak ditemukan.');
@@ -64,7 +64,7 @@ class PerusahaanController extends Controller
             'pdf_akta_cabang' => 'required',
         ]);
 
-        $data_perusahaan = TableDataPerusahaan::find($id);
+        $data_perusahaan = Perusahaan::find($id);
 
         if (!$data_perusahaan) {
             return redirect()->route('perusahaan.index')->with('error', 'Data tidak ditemukan.');
@@ -79,7 +79,7 @@ class PerusahaanController extends Controller
 
     public function destroy($id)
     {
-        $data_perusahaan = TableDataPerusahaan::find($id);
+        $data_perusahaan = Perusahaan::find($id);
 
         if (!$data_perusahaan) {
             return redirect()->route('perusahaan.index')->with('error', 'Data tidak ditemukan.');
@@ -94,7 +94,7 @@ class PerusahaanController extends Controller
 
     public function show($id)
     {
-        $data_perusahaan = TableDataPerusahaan::find($id);
+        $data_perusahaan = Perusahaan::find($id);
 
         if (!$data_perusahaan) {
             return redirect()->route('perusahaan.index')->with('error', 'Data tidak ditemukan.');

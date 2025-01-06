@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TableDataKaryawan;
+use App\Models\Karyawan;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
@@ -10,7 +10,7 @@ class KaryawanController extends Controller
 
     public function index()
     {
-        $data_karyawans = TableDataKaryawan::all();
+        $data_karyawans = Karyawan::all();
         return view('karyawan.index', compact('data_karyawans'));
     }
 
@@ -33,7 +33,7 @@ class KaryawanController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-        TableDataKaryawan::create([
+        Karyawan::create([
             'nama' => $request->nama,
             'role' => $request->role,
             'cabang_id' => $request->cabang_id,
@@ -51,13 +51,13 @@ class KaryawanController extends Controller
 
     public function edit($id)
     {
-        $karyawan = TableDataKaryawan::findOrFail($id);
+        $karyawan = Karyawan::findOrFail($id);
         return view('karyawan.edit', compact('karyawan'));
     }
 
     public function update(Request $request, $id)
     {
-        $karyawan = TableDataKaryawan::findOrFail($id);
+        $karyawan = Karyawan::findOrFail($id);
 
         $request->validate([
             'nama' => 'required|string|max:255',
@@ -86,7 +86,7 @@ class KaryawanController extends Controller
     }
     public function destroy($id)
     {
-        $karyawan = TableDataKaryawan::findOrFail($id);
+        $karyawan = Karyawan::findOrFail($id);
         $karyawan->delete();
 
         return redirect()->route('karyawan.index')
