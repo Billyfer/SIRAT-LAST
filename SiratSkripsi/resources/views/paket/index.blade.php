@@ -42,7 +42,11 @@
                         <td>{{ $paket->id }}</td>
                         <td>{{ $paket->tanggal_keberangkatan }}</td>
                         <td>{{ $paket->tanggal_kepulangan }}</td>
-                        <td>{{ $paket->nama_paket }}</td>
+                        <td>
+                            <a href="{{ route('jamaah.index', ['paket' => $paket->id]) }}">
+                                {{ $paket->nama_paket }}
+                            </a>
+                        </td>
                         <td>{{ $paket->hotel_madinah }}</td>
                         <td>{{ $paket->hotel_mekkah }}</td>
                         <td>{{ $paket->program }}</td>
@@ -58,6 +62,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
+                            <a href="{{ route('jamaah.index', ['paket' => $paket->id]) }}" class="btn btn-info btn-sm">Detail</a>
                         </td>
                     </tr>
                 @empty

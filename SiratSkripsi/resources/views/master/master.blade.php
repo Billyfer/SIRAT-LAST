@@ -141,7 +141,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                class="nav-link {{ Request::route()->getName() == 'refferals.index' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Refferal
@@ -161,7 +161,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                class="nav-link {{ Request::route()->getName() == 'perusahaan.index' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Fasilitas
@@ -171,7 +171,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                class="nav-link {{ Request::route()->getName() == 'surat.index' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Surat
@@ -181,7 +181,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
+                                class="nav-link {{ Request::route()->getName() == 'pembayaran.index' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Pembayaran

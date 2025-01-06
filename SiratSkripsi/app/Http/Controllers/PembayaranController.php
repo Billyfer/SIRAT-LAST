@@ -34,14 +34,15 @@ class PembayaranController extends Controller
             'bukti_pembayaran' => 'nullable|file|mimes:jpeg,png,pdf|max:2048', // Max 2MB
         ]);
 
+        $data = $request->all();
+
         // Upload file bukti pembayaran jika ada
         if ($request->hasFile('bukti_pembayaran')) {
-            $filePath = $request->file('bukti_pembayaran')->store('bukti_pembayaran');
-            $validatedData['bukti_pembayaran'] = $filePath;
+            $data['bukti_pembayaran'] = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
         }
 
         // Simpan data pembayaran
-        $pembayaran = Pembayaran::create($validatedData);
+        $pembayaran = Pembayaran::create($data);
 
         return response()->json(['message' => 'Pembayaran berhasil dibuat', 'data' => $pembayaran], 201);
     }
@@ -76,26 +77,26 @@ class PembayaranController extends Controller
             'bukti_pembayaran' => 'nullable|file|mimes:jpeg,png,pdf|max:2048', // Max 2MB
         ]);
 
-        // Cari pembayaran
         $pembayaran = Pembayaran::find($id);
 
         if (!$pembayaran) {
             return response()->json(['message' => 'Pembayaran tidak ditemukan'], 404);
         }
 
+        $data = $request->all();
+
         // Upload file bukti pembayaran jika ada
         if ($request->hasFile('bukti_pembayaran')) {
             // Hapus file lama jika ada
-            if ($pembayaran->bukti_pembayaran && Storage::exists($pembayaran->bukti_pembayaran)) {
-                Storage::delete($pembayaran->bukti_pembayaran);
+            if ($pembayaran->bukti_pembayaran && Storage::exists('public/' . $pembayaran->bukti_pembayaran)) {
+                Storage::delete('public/' . $pembayaran->bukti_pembayaran);
             }
 
-            $filePath = $request->file('bukti_pembayaran')->store('bukti_pembayaran');
-            $validatedData['bukti_pembayaran'] = $filePath;
+            $data['bukti_pembayaran'] = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
         }
 
         // Update data pembayaran
-        $pembayaran->update($validatedData);
+        $pembayaran->update($data);
 
         return response()->json(['message' => 'Pembayaran berhasil diperbarui', 'data' => $pembayaran]);
     }
@@ -105,7 +106,6 @@ class PembayaranController extends Controller
      */
     public function destroy($id)
     {
-        // Cari pembayaran
         $pembayaran = Pembayaran::find($id);
 
         if (!$pembayaran) {
@@ -113,8 +113,8 @@ class PembayaranController extends Controller
         }
 
         // Hapus file bukti pembayaran jika ada
-        if ($pembayaran->bukti_pembayaran && Storage::exists($pembayaran->bukti_pembayaran)) {
-            Storage::delete($pembayaran->bukti_pembayaran);
+        if ($pembayaran->bukti_pembayaran && Storage::exists('public/' . $pembayaran->bukti_pembayaran)) {
+            Storage::delete('public/' . $pembayaran->bukti_pembayaran);
         }
 
         // Hapus data pembayaran

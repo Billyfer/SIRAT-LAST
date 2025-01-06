@@ -90,7 +90,7 @@ class JamaahController extends Controller
         foreach (['kartu_keluarga', 'ktp', 'surat_kesehatan', 'visa', 'surat_pendukung'] as $fileField) {
             if ($request->hasFile($fileField)) {
                 if ($jamaah->$fileField) {
-                    \Storage::delete('public/' . $jamaah->$fileField);
+                    Storage::delete('public/' . $jamaah->$fileField);
                 }
                 $data[$fileField] = $request->file($fileField)->store('jamaah_documents', 'public');
             }
@@ -111,7 +111,7 @@ class JamaahController extends Controller
 
         foreach (['kartu_keluarga', 'ktp', 'surat_kesehatan', 'visa', 'surat_pendukung'] as $fileField) {
             if ($jamaah->$fileField) {
-                \Storage::delete('public/' . $jamaah->$fileField);
+                Storage::delete('public/' . $jamaah->$fileField);
             }
         }
 
