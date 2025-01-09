@@ -11,6 +11,6 @@ class ReferralController extends Controller
         // Ambil semua data referral dengan relasi karyawan
         $referrals = Referral::with('karyawan')->get();
 
-        return view('referral.index', compact('referrals'));
+        return view('referrals.index', compact('referrals'));
     }
 }

@@ -14,9 +14,10 @@ class SuratController extends Controller
     public function index()
     {
         // Ambil semua data surat
-        $surats = Surat::with(['perusahaan', 'karyawan'])->get();
+        $surat = Surat::with(['perusahaan', 'karyawan'])->get();
+        return view('surat.index', compact('surat'));
 
-        return response()->json($surats);
+        // return response()->json($surats);
     }
 
     /**
@@ -25,11 +26,11 @@ class SuratController extends Controller
     public function store(Request $request)
     {
         // Validasi data
-        $validatedData = $request->validate([
+         $request->validate([
             'id_data_perusahaans' => 'nullable|exists:data_perusahaans,id',
             'id_karyawans' => 'nullable|exists:karyawans,id',
             'keterangan' => 'required|string',
-            'dokumen_surat' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'dokumen_s$validatedDataurat' => 'required|file|mimes:pdf,doc,docx|max:2048',
             'note' => 'nullable|string',
         ]);
 
@@ -42,8 +43,8 @@ class SuratController extends Controller
 
         // Buat surat baru
         $surat = Surat::create($data);
-
-        return response()->json(['message' => 'Surat berhasil dibuat', 'data' => $surat], 201);
+        return view('surat.index', compact('surats'));
+        // return response()->json(['message' => 'Surat berhasil dibuat', 'data' => $surat], 201);
     }
 
     /**

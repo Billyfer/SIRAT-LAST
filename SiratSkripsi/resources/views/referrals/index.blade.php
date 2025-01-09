@@ -12,14 +12,14 @@
         </thead>
         <tbody>
             @forelse($referrals as $referral)
-                <tr>
-                    <td>{{ $referral->karyawan->nama ?? 'Tidak ada data' }}</td>
-                    <td>{{ $referral->total_referals }}</td>
-                </tr>
+            <tr>
+                <td>{{ $referral->karyawan->nama ?? 'Tidak ada data' }}</td>
+                <td>{{ $referral->total_referals }}</td>
+            </tr>
             @empty
-                <tr>
-                    <td colspan="2">Tidak ada data referral.</td>
-                </tr>
+            <tr>
+                <td colspan="2">Tidak ada data referral.</td>
+            </tr>
             @endforelse
         </tbody>
     </table>

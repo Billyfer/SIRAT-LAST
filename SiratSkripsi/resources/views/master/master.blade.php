@@ -26,7 +26,7 @@
             font-weight: bold;
         }
 
-        .nav-sidebar .nav-item > .nav-link.active {
+        .nav-sidebar .nav-item>.nav-link.active {
             background-color: #4e73df;
             color: white;
         }
@@ -68,7 +68,8 @@
                         <div class="dropdown-divider"></div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt mr-2"></i> Logout</button>
+                            <button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt mr-2"></i>
+                                Logout</button>
                         </form>
                     </div>
                 </li>
@@ -100,7 +101,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                         <li class="nav-item">
-                            <a href="{{ url('/admin/admindashboard') }}" class="nav-link">
+                            <a href="{{ url('/dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -143,9 +144,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/referals') }}" class="nav-link">
+                            <a href="{{ url('/referral') }}" class="nav-link">
                                 <i class="nav-icon fas fa-money-check-alt"></i>
-                                <p>referals</p>
+                                <p>Referals</p>
                             </a>
                         </li>
                     </ul>
