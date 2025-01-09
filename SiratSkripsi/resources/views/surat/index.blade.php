@@ -4,12 +4,12 @@
 <div class="container mt-4">
     <div class="row mb-4">
         <div class="col">
-            <h2 class="text-center">Data Perusahaan</h2>
+            <h2 class="text-center">Data Surat</h2>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ route('perusahaan.create') }}" class="btn btn-success">Create New Data Perusahaan</a>
+            <a href="{{ route('surat.create') }}" class="btn btn-success">Tambah Surat</a>
         </div>
     </div>
     @if(session('success'))
@@ -22,42 +22,32 @@
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Nama Cabang</th>
-                    <th>Kota/Kabupaten</th>
-                    <th>Alamat</th>
-                    <th>Nama Pimpinan</th>
-                    <th>NIB Cabang</th>
-                    <th>PDF NIB</th>
-                    <th>PDF Akta Cabang</th>
+                    <th>Perusahaan</th>
+                    <th>Karyawan</th>
+                    <th>Keterangan</th>
+                    <th>Dokumen Surat</th>
+                    <th>Note</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($data_perusahaan as $perusahaan)
+                @forelse($surats as $surat)
                     <tr>
-                        <td>{{ $perusahaan->id }}</td>
-                        <td>{{ $perusahaan->nama_cabang }}</td>
-                        <td>{{ $perusahaan->kota_kabupaten }}</td>
-                        <td>{{ $perusahaan->alamat }}</td>
-                        <td>{{ $perusahaan->nama_pimpinan }}</td>
-                        <td>{{ $perusahaan->nib_cabang }}</td>
+                        <td>{{ $surat->id }}</td>
+                        <td>{{ $surat->perusahaan->nama_perusahaan ?? 'Tidak ada' }}</td>
+                        <td>{{ $surat->karyawan->nama_karyawan ?? 'Tidak ada' }}</td>
+                        <td>{{ $surat->keterangan }}</td>
                         <td>
-                            @if($perusahaan->pdf_nib)
-                                <a href="{{ asset('storage/' . $perusahaan->pdf_nib) }}" target="_blank">View</a>
+                            @if($surat->dokumen_surat)
+                                <a href="{{ asset('storage/' . $surat->dokumen_surat) }}" target="_blank">Lihat Dokumen</a>
                             @else
-                                -
+                                Tidak ada dokumen
                             @endif
                         </td>
+                        <td>{{ $surat->note }}</td>
                         <td>
-                            @if($perusahaan->pdf_akta_cabang)
-                                <a href="{{ asset('storage/' . $perusahaan->pdf_akta_cabang) }}" target="_blank">View</a>
-                            @else
-                                -
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('perusahaan.edit', $perusahaan->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <form action="{{ route('perusahaan.destroy', $perusahaan->id) }}" method="POST" class="d-inline">
+                            <a href="{{ route('surat.edit', $surat->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <form action="{{ route('surat.destroy', $surat->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -66,7 +56,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9" class="text-center">Tidak ada data.</td>
+                        <td colspan="7" class="text-center">Tidak ada data surat.</td>
                     </tr>
                 @endforelse
             </tbody>

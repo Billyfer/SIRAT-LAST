@@ -7,13 +7,12 @@ use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
 {
-
     public function index()
     {
-        $data_karyawans = Karyawan::all();
+        // Include relasi jika perlu (referrals, cabang)
+        $data_karyawans = Karyawan::with('referrals', 'cabang')->get();
         return view('karyawan.index', compact('data_karyawans'));
     }
-
 
     public function create()
     {
@@ -24,7 +23,7 @@ class KaryawanController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'role' => 'required|in:Karyawan Pusat,Pimpinan Cabang,Karyawan Cabang',
+            'role' => 'required|in:' . implode(',', Karyawan::ROLES),
             'cabang_id' => 'nullable|exists:data_perusahaans,id',
             'email' => 'required|email|unique:karyawans,email',
             'no_wa' => 'nullable|string|max:15',
@@ -48,7 +47,6 @@ class KaryawanController extends Controller
             ->with('success', 'Data Karyawan berhasil ditambahkan.');
     }
 
-
     public function edit($id)
     {
         $karyawan = Karyawan::findOrFail($id);
@@ -61,7 +59,7 @@ class KaryawanController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:255',
-            'role' => 'required|in:Karyawan Pusat,Pimpinan Cabang,Karyawan Cabang',
+            'role' => 'required|in:' . implode(',', Karyawan::ROLES),
             'cabang_id' => 'nullable|exists:data_perusahaans,id',
             'email' => 'required|email|unique:karyawans,email,' . $karyawan->id,
             'no_wa' => 'nullable|string|max:15',
@@ -70,7 +68,7 @@ class KaryawanController extends Controller
             'password' => 'nullable|string|min:8',
         ]);
 
-        $karyawan->update([
+        $karyawanData = [
             'nama' => $request->nama,
             'role' => $request->role,
             'cabang_id' => $request->cabang_id,
@@ -78,15 +76,25 @@ class KaryawanController extends Controller
             'no_wa' => $request->no_wa,
             'alamat' => $request->alamat,
             'username' => $request->username,
-            'password' => $request->password ? bcrypt($request->password) : $karyawan->password, // Update password jika diisi
-        ]);
+        ];
+
+        if ($request->password) {
+            $karyawanData['password'] = bcrypt($request->password);
+        }
+
+        $karyawan->update($karyawanData);
 
         return redirect()->route('karyawan.index')
             ->with('success', 'Data Karyawan berhasil diperbarui.');
     }
+
     public function destroy($id)
     {
         $karyawan = Karyawan::findOrFail($id);
+
+        // Hapus referral terkait (jika ada relasi)
+        $karyawan->referrals()->delete();
+
         $karyawan->delete();
 
         return redirect()->route('karyawan.index')

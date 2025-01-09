@@ -8,16 +8,16 @@
             <form action="{{ route('paket.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
+                    <label for="nama_paket" class="form-label">Nama Paket</label>
+                    <input type="text" class="form-control" id="nama_paket" name="nama_paket" required>
+                </div>
+                <div class="mb-3">
                     <label for="tanggal_keberangkatan" class="form-label">Tanggal Keberangkatan</label>
                     <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" required>
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_kepulangan" class="form-label">Tanggal Kepulangan</label>
                     <input type="date" class="form-control" id="tanggal_kepulangan" name="tanggal_kepulangan" required>
-                </div>
-                <div class="mb-3">
-                    <label for="nama_paket" class="form-label">Nama Paket</label>
-                    <input type="text" class="form-control" id="nama_paket" name="nama_paket" required>
                 </div>
                 <div class="mb-3">
                     <label for="hotel_madinah" class="form-label">Hotel Madinah</label>
@@ -42,6 +42,10 @@
                 <div class="mb-3">
                     <label for="total_seat" class="form-label">Total Seat</label>
                     <input type="number" class="form-control" id="total_seat" name="total_seat" required>
+                </div>
+                <div class="mb-3">
+                    <label for="total_seat" class="form-label">Jenis Paket</label>
+                    <input type="number" class="form-control" id="jenis_paket" name="jenis_paket" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Submit</button>
             </form>

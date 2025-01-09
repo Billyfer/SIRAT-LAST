@@ -16,6 +16,7 @@ class Jamaah extends Model
     protected $fillable = [
         'id_paket',
         'id_perusahaan',
+        'id_karyawan',
         'nama_jamaah',
         'alamat',
         'kartu_keluarga',
@@ -24,6 +25,7 @@ class Jamaah extends Model
         'surat_kesehatan',
         'visa',
         'surat_pendukung',
+        'referrals',
     ];
 
 

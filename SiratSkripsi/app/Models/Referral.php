@@ -16,8 +16,7 @@ class Referral extends Model
     protected $fillable = [
         'id_data_jamaahs',
         'id_karyawans',
-        'code_referals',
-        'total_referals',
+        'total_referrals',
     ];
 
     // Relasi ke tabel `jamaahs`

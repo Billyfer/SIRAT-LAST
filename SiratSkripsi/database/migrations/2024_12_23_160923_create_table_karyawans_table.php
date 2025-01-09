@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('karyawans', function (Blueprint $table) {
         $table->id();
         $table->string('nama') ->nullable();
-        $table->enum('role', ['Karyawan Pusat', 'Pimpinan Cabang', 'Karyawan Cabang']);
+        $table->enum('role', ['Karyawan Pusat', 'Pimpinan Cabang', 'Karyawan Cabang,','Pimpinan Pusat']);
         $table->foreignId('cabang_id')->nullable()->constrained('data_perusahaans')->onDelete('cascade');
         $table->string('email')->unique();
         $table->string('no_wa') ->nullable();

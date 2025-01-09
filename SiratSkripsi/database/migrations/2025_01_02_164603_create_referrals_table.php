@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_data_jamaahs')->nullable()->constrained('jamaahs')->onDelete('cascade');
             $table->foreignId('id_karyawans')->nullable()->constrained('karyawans')->onDelete('cascade');
-            $table->string('code_referals')->nullable();
             $table->string('total_referals')->nullable();
             $table->timestamps();
         });

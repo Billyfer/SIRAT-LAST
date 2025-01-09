@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_paket')->nullable()->constrained('pakets')->onDelete('cascade');
             $table->foreignId('id_perusahaan')->nullable()->constrained('data_perusahaans')->onDelete('cascade');
+            $table->foreignId('id_karyawan')->nullable()->constrained('karyawans')->onDelete('cascade');
             $table->string('nama_jamaah')->nullable();
             $table->string('alamat')->nullable();
             $table->string('kartu_keluarga')->nullable();
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('surat_kesehatan')->nullable();
             $table->string('visa')->nullable();
             $table->string('surat_pendukung')->nullable();
+            $table->string(column: 'referrals')->nullable();
         });
     }
 

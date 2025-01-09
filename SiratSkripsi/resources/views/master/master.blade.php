@@ -6,85 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sirat | Dashboard</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .brand-link {
+            background-color: #4e73df;
+        }
+
+        .brand-text {
+            font-weight: bold;
+        }
+
+        .nav-sidebar .nav-item > .nav-link.active {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        .main-footer {
+            background-color: #f8f9fc;
+            padding: 15px;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 
-<body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
+<body class="hold-transition sidebar-mini layout-fixed">
+    <!-- Wrapper -->
     <div class="wrapper">
+
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown user user-menu">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('dist/img/user1-128x128.jpg') }}" class="user-image img-circle elevation-2"
-                            alt="User Image">
-                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <!-- User image -->
-                        <li class="user-header bg-primary">
-                            <img src="{{ asset('dist/img/user1-128x128.jpg') }}" class="img-circle elevation-2"
-                                alt="User Image">
-                            <p>
-                                {{ Auth::user()->name }}
-                                <small></small>
-                            </p>
-                        </li>
-                        <li class="user-footer">
-                            <div class="pull-left">
-                                {{-- <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
-                                --}}
-                                <x-dropdown-link :href="route('profile.edit')" class="btn btn-default btn-flat"
-                                    style="color:black">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
-                            </div>
-                            <div class="pull-right">
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                    this.closest('form').submit();" class="btn btn-default btn-flat"
-                                        style="color:black">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
+            <!-- Left Navbar Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <!-- Navbar Search -->
+            </ul>
 
-                <!-- Notifications Dropdown Menu -->
+            <!-- Right Navbar Links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- User Dropdown -->
                 <li class="nav-item dropdown">
-
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <img src="{{ asset('dist/img/user1-128x128.jpg') }}" class="img-circle elevation-2"
+                            alt="User Image" style="width: 30px; height: 30px;">
+                        <span class="ml-2 d-none d-sm-inline">{{ Auth::user()->name }}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <div class="dropdown-item">
+                            <i class="fas fa-user-circle mr-2"></i> Profile
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt mr-2"></i> Logout</button>
+                        </form>
+                    </div>
                 </li>
             </ul>
         </nav>
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
+        <!-- Sidebar -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="#" class="brand-link">
+                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="Logo"
+                    class="brand-image img-circle elevation-3">
                 <span class="brand-text font-weight-light">SIRAT</span>
             </a>
 
-            <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user (optional) -->
+                <!-- Sidebar User Panel -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="{{ asset('dist/img/user1-128x128.jpg') }}" class="img-circle elevation-2"
@@ -94,220 +95,86 @@
                         <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                         <li class="nav-item">
-                            <a href="{{ url('/admin/admindashboard') }}"
-                                class="nav-link {{ Request::route()->getName() == 'dashboard' ? 'active' : '' }}">
+                            <a href="{{ url('/admin/admindashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <!-- Add More Menu Items -->
+                        <li class="nav-item">
+                            <a href="{{ url('/jamaah') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Jamaah</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Jamaah
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
+                            <a href="{{ url('/karyawan') }}" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>Karyawan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/paket') }}"
-                                class="nav-link {{ Request::route()->getName() == 'paket.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Paket
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
+                            <a href="{{ url('/pembayaran') }}" class="nav-link">
+                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <p>Pembayaran</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/karyawan') }}"
-                                class="nav-link {{ Request::route()->getName() == 'karyawan.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Karyawan
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
+                            <a href="{{ url('/fasilitas') }}" class="nav-link">
+                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <p>Fasilitas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'refferals.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Refferal
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
+                            <a href="{{ url('/perusahaan') }}" class="nav-link">
+                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <p>Perusahaan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'jamaah.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Data Jamaah
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
+                            <a href="{{ url('/surat') }}" class="nav-link">
+                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <p>Surat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'perusahaan.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Fasilitas
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
+                            <a href="{{ url('/referals') }}" class="nav-link">
+                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <p>referals</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'surat.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Surat
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/jamaah') }}"
-                                class="nav-link {{ Request::route()->getName() == 'pembayaran.index' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Pembayaran
-                                    {{-- <span class="right badge badge-danger"></span> --}}
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Layout Options
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../layout/top-nav.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Top Navigation</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../layout/top-nav-sidebar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Top Navigation + Sidebar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../layout/boxed.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Boxed</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../layout/fixed-sidebar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Sidebar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../layout/fixed-topnav.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Navbar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../layout/fixed-footer.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Footer</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Collapsed Sidebar</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>
-                <!-- /.sidebar-menu -->
             </div>
-            <!-- /.sidebar -->
         </aside>
+        <!-- /.sidebar -->
 
-        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
-
-            <!-- Main content -->
             <section class="content">
-
-                <!-- Default box -->
-                <div class="card">
-                    <div class="card-body">
-                        @yield('content')
-                    </div>
+                <div class="container-fluid pt-3">
+                    @yield('content')
                 </div>
-                <!-- /.card -->
-
             </section>
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        s
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.2.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
-        </footer>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+        <!-- Footer -->
+        <footer class="main-footer text-center">
+            <strong>Copyright &copy; 2024 <a href="#">Sirat</a>.</strong> All rights reserved.
+        </footer>
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
+    <!-- Scripts -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dist/js/demo.js') }}"></script>
 </body>
 
 </html>

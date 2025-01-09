@@ -4,51 +4,43 @@
 <div class="container mt-4">
     <div class="row mb-4">
         <div class="col">
-            <h2 class="text-center">Tambah Data Perusahaan</h2>
+            <h2 class="text-center">Tambah Surat</h2>
         </div>
     </div>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('perusahaan.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('surat.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="nama_cabang" class="form-label">Nama Cabang</label>
-            <input type="text" name="nama_cabang" class="form-control" required>
+            <label for="id_data_perusahaans" class="form-label">Perusahaan</label>
+            <select name="id_data_perusahaans" id="id_data_perusahaans" class="form-select">
+                <option value="">Pilih Perusahaan</option>
+                @foreach($perusahaans as $perusahaan)
+                    <option value="{{ $perusahaan->id }}">{{ $perusahaan->nama_perusahaan }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-3">
-            <label for="kota_kabupaten" class="form-label">Kota/Kabupaten</label>
-            <input type="text" name="kota_kabupaten" class="form-control" required>
+            <label for="id_karyawans" class="form-label">Karyawan</label>
+            <select name="id_karyawans" id="id_karyawans" class="form-select">
+                <option value="">Pilih Karyawan</option>
+                @foreach($karyawans as $karyawan)
+                    <option value="{{ $karyawan->id }}">{{ $karyawan->nama_karyawan }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-3">
-            <label for="alamat" class="form-label">Alamat</label>
-            <input type="text" name="alamat" class="form-control" required>
+            <label for="keterangan" class="form-label">Keterangan</label>
+            <textarea name="keterangan" id="keterangan" class="form-control" rows="3" required></textarea>
         </div>
         <div class="mb-3">
-            <label for="nama_pimpinan" class="form-label">Nama Pimpinan</label>
-            <input type="text" name="nama_pimpinan" class="form-control" required>
+            <label for="dokumen_surat" class="form-label">Dokumen Surat</label>
+            <input type="file" name="dokumen_surat" id="dokumen_surat" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="nib_cabang" class="form-label">NIB Cabang</label>
-            <input type="text" name="nib_cabang" class="form-control" required>
+            <label for="note" class="form-label">Note</label>
+            <textarea name="note" id="note" class="form-control" rows="2"></textarea>
         </div>
-        <div class="mb-3">
-            <label for="pdf_nib" class="form-label">PDF NIB</label>
-            <input type="file" name="pdf_nib" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="pdf_akta_cabang" class="form-label">PDF Akta Cabang</label>
-            <input type="file" name="pdf_akta_cabang" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success">Simpan</button>
+        <a href="{{ route('surat.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 @endsection

@@ -9,10 +9,15 @@ class Karyawan extends Model
 {
     use HasFactory;
 
-    // Nama tabel
+
     protected $table = 'karyawans';
 
-    // Kolom yang bisa diisi (mass assignable)
+    const ROLES = [
+        'Karyawan Pusat',
+        'Pimpinan Cabang',
+        'Karyawan Cabang',
+        'Pimpinan Pusat',
+    ];
     protected $fillable = [
         'nama',
         'role',
@@ -24,15 +29,14 @@ class Karyawan extends Model
         'password',
     ];
 
-    // Relasi ke tabel `data_perusahaans`
+
     public function cabang()
     {
         return $this->belongsTo(Perusahaan::class, 'cabang_id');
     }
 
-    /**
-     * Mutator untuk mengenkripsi password saat disimpan.
-     */
+
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
