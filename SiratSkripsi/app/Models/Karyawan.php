@@ -34,6 +34,10 @@ class Karyawan extends Model
     {
         return $this->belongsTo(Perusahaan::class, 'cabang_id');
     }
+    public function referrals()
+    {
+        return $this->hasMany(Referral::class, 'id_karyawans', 'id');
+    }
 
 
 

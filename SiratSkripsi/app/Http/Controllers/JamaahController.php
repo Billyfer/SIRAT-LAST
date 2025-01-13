@@ -7,6 +7,7 @@ use App\Models\Jamaah;
 use App\Models\Paket;
 use App\Models\Perusahaan;
 use App\Models\Referral;
+use App\Models\Karyawan;
 use Illuminate\Support\Facades\Storage;
 
 class JamaahController extends Controller
@@ -21,7 +22,8 @@ class JamaahController extends Controller
     {
         $pakets = Paket::all();
         $perusahaans = Perusahaan::all();
-        return view('jamaah.create', compact('pakets', 'perusahaans'));
+        $karyawans = Karyawan::all();
+        return view('jamaah.create', compact('pakets', 'perusahaans', 'karyawans'));
     }
 
     public function store(Request $request)
