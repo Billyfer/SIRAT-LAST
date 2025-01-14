@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container">
     <h1>Detail Fasilitas</h1>

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container mt-4">
     <div class="row mb-4">
@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($surat as $item)
+                @forelse($data_surat as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->perusahaan->nama_perusahaan ?? 'Tidak ada' }}</td>

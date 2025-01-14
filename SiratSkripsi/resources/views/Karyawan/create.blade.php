@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container mt-4">
     <div class="row mb-4">

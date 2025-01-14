@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container mt-5">
     <div class="row">
@@ -13,7 +13,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_keberangkatan" class="form-label">Tanggal Keberangkatan</label>
-                    <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" required>
+                    <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_kepulangan" class="form-label">Tanggal Kepulangan</label>

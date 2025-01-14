@@ -57,20 +57,26 @@
                 <!-- User Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img src="{{ asset('dist/img/user1-128x128.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image" style="width: 30px; height: 30px;">
+                        <img src="{{ asset('img/direktur.jpg') }}" class="img-circle elevation-2" alt="User Image"
+                            style="width: 30px; height: 30px;">
                         <span class="ml-2 d-none d-sm-inline">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <div class="dropdown-item">
+                        {{-- <div class="dropdown-item">
                             <i class="fas fa-user-circle mr-2"></i> Profile
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt mr-2"></i>
-                                Logout</button>
-                        </form>
+                        </div> --}}
+                        <div class="dropdown-item"></div>
+
+                        <a href={{ route('profile.edit') }}>
+                            <button class="dropdown-item" type="submit"><i class="fas fa-user-circle mr-2"></i>
+                                Profile</button>
+                            </form>
+                            <div class="dropdown-divider"></div>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt mr-2"></i>
+                                    Logout</button>
+                            </form>
                     </div>
                 </li>
             </ul>
@@ -78,10 +84,9 @@
         <!-- /.navbar -->
 
         <!-- Sidebar -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="#" class="brand-link">
-                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="Logo"
-                    class="brand-image img-circle elevation-3">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #123524">
+            <a href="#" class="brand-link" style="background-color: #123524">
+                <img src="{{ asset('img/logo2.png') }}" alt="Logo" class="brand-image">
                 <span class="brand-text font-weight-light">SIRAT</span>
             </a>
 
@@ -89,8 +94,7 @@
                 <!-- Sidebar User Panel -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('dist/img/user1-128x128.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image">
+                        <img src="{{ asset('img/direktur.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -99,7 +103,7 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" color="white">
                         <li class="nav-item">
                             <a href="{{ url('/dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -127,25 +131,25 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/fasilitas') }}" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <i class="nav-icon fas fa-tree"></i>
                                 <p>Fasilitas</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/perusahaan') }}" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <i class="nav-icon fas fa-columns"></i>
                                 <p>Perusahaan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/surat') }}" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <i class="nav-icon far fa-envelope"></i>
                                 <p>Surat</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/referral') }}" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <i class="nav-icon fas fa-edit"></i>
                                 <p>Referals</p>
                             </a>
                         </li>
@@ -167,7 +171,7 @@
 
         <!-- Footer -->
         <footer class="main-footer text-center">
-            <strong>Copyright &copy; 2024 <a href="#">Sirat</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2023-2025 <a href="#">Sirat</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->

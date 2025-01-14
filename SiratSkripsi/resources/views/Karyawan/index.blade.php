@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container mt-4">
     <div class="row mb-4">
@@ -13,9 +13,9 @@
         </div>
     </div>
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -34,28 +34,28 @@
             </thead>
             <tbody>
                 @forelse($data_karyawans as $karyawan)
-                    <tr>
-                        <td>{{ $karyawan->id }}</td>
-                        <td>{{ $karyawan->nama }}</td>
-                        <td>{{ $karyawan->role }}</td>
-                        <td>{{ $karyawan->cabang_id }}</td>
-                        <td>{{ $karyawan->email }}</td>
-                        <td>{{ $karyawan->no_wa }}</td>
-                        <td>{{ $karyawan->alamat }}</td>
-                        <td>{{ $karyawan->username }}</td>
-                        <td>
-                            <a href="{{ route('karyawan.edit', $karyawan->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <form action="{{ route('karyawan.destroy', $karyawan->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ $karyawan->id }}</td>
+                    <td>{{ $karyawan->nama }}</td>
+                    <td>{{ $karyawan->role }}</td>
+                    <td>{{ $karyawan->cabang_id }}</td>
+                    <td>{{ $karyawan->email }}</td>
+                    <td>{{ $karyawan->no_wa }}</td>
+                    <td>{{ $karyawan->alamat }}</td>
+                    <td>{{ $karyawan->username }}</td>
+                    <td>
+                        <a href="{{ route('karyawan.edit', $karyawan->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{ route('karyawan.destroy', $karyawan->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="9" class="text-center">Tidak ada data.</td>
-                    </tr>
+                <tr>
+                    <td colspan="9" class="text-center">Tidak ada data.</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>

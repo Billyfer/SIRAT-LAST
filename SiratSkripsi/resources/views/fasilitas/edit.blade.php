@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container">
     <h1>Edit Fasilitas</h1>
@@ -12,9 +12,9 @@
             <select name="id_paket" id="id_paket" class="form-select" required>
                 <option value="">-- Pilih Paket --</option>
                 @foreach($pakets as $paket)
-                    <option value="{{ $paket->id }}" {{ $paket->id == $fasilitas->id_paket ? 'selected' : '' }}>
-                        {{ $paket->nama_paket }}
-                    </option>
+                <option value="{{ $paket->id }}" {{ $paket->id == $fasilitas->id_paket ? 'selected' : '' }}>
+                    {{ $paket->nama_paket }}
+                </option>
                 @endforeach
             </select>
         </div>

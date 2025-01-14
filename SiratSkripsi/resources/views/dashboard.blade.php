@@ -1,45 +1,48 @@
 @extends('master.master')
 @section('title', 'Dashboard')
 @section('content')
+{{-- src="{{ asset('img/logo.png') }}" --}}
 <section class="content">
-    <div class="card-body">
-        <div>
-            <h1 class="text-center">Selamat Datang di Dashboard</h1>
-        </div>
+  <div class="card-body">
+    <div>
+      <h1 class="text-center">Selamat Datang di SIRAT Arraudhah Tour & Travel, "
+        {{ Auth::user()->name }} 👋" </h1>
     </div>
-    <!-- Post -->
+  </div>
+  <div class="container-fluid">
     <div class="post">
-        <div class="user-block">
-          <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-          <span class="username">
-            <a href="#"></a>
-            <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-          </span>
-          <span class="description">Posted 5 photos - 5 days ago</span>
+      <div class="user-block">
+        {{-- <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+        <span class="username">
+          <a href="#">Adam Jones</a>
+          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+        </span>
+        <span class="description">Posted 5 photos - 5 days ago</span> --}}
+      </div>
+      <!-- /.user-block -->
+      <div class="row mb-3">
+        <div class="col-sm-6">
+          <img class="img-fluid" src="{{ asset('img/paket_umroh.png') }}" alt="Photo">
         </div>
-        <!-- /.user-block -->
-        <div class="row mb-3">
-          <div class="col-sm-6">
-            <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
-          </div>
-          <!-- /.col -->
-          <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-6">
-                <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Photo">
-                <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Photo">
-              </div>
-              <!-- /.col -->
-              <div class="col-sm-6">
-                <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Photo">
-                <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
-              </div>
-              <!-- /.col -->
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-6">
+              <img class="img-fluid" mb-3 src="{{ asset('img/logo.png') }}" alt="Photo">
+              <img class="img-fluid" src="{{ asset('img/haji.png') }}" alt="Photo">
             </div>
-            <!-- /.row -->
+            <!-- /.col -->
+            <div class="col-sm-6">
+              <img class="img-fluid mb-3" src="{{ asset('img/haji2.png') }}" alt="Photo">
+              <img class="img-fluid" src="{{ asset('img/haji3.png') }}" alt="Photo">
+            </div>
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
+          <!-- /.row -->
         </div>
-        <!-- /.row -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
 </section>
 @endsection

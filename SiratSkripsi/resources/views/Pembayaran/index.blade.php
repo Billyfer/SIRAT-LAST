@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container mt-4">
     <div class="row mb-4">
@@ -13,9 +13,9 @@
         </div>
     </div>
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -33,33 +33,35 @@
             </thead>
             <tbody>
                 @forelse($pembayarans as $pembayaran)
-                    <tr>
-                        <td>{{ $pembayaran->id }}</td>
-                        <td>{{ $pembayaran->jamaah->nama_jamaah }}</td>
-                        <td>{{ $pembayaran->tanggal_pembayaran }}</td>
-                        <td>{{ number_format($pembayaran->jumlah_pembayaran, 0, ',', '.') }}</td>
-                        <td>{{ $pembayaran->keterangan }}</td>
-                        <td>{{ $pembayaran->penerima }}</td>
-                        <td>
-                            @if($pembayaran->bukti_pembayaran)
-                                <a href="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" target="_blank">Lihat</a>
-                            @else
-                                Tidak Ada
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('pembayaran.edit', $pembayaran->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <form action="{{ route('pembayaran.destroy', $pembayaran->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ $pembayaran->id }}</td>
+                    <td>{{ $pembayaran->jamaah->nama_jamaah }}</td>
+                    <td>{{ $pembayaran->tanggal_pembayaran }}</td>
+                    <td>{{ number_format($pembayaran->jumlah_pembayaran, 0, ',', '.') }}</td>
+                    <td>{{ $pembayaran->keterangan }}</td>
+                    <td>{{ $pembayaran->penerima }}</td>
+                    <td>
+                        @if($pembayaran->bukti_pembayaran)
+                        <a href="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" target="_blank">Lihat</a>
+                        @else
+                        Tidak Ada
+                        @endif
+                    </td>
+                    <td>
+                        <a href="{{ route('pembayaran.edit', $pembayaran->id) }}"
+                            class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{ route('pembayaran.destroy', $pembayaran->id) }}" method="POST"
+                            class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="8" class="text-center">Tidak ada data pembayaran.</td>
-                    </tr>
+                <tr>
+                    <td colspan="8" class="text-center">Tidak ada data pembayaran.</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>

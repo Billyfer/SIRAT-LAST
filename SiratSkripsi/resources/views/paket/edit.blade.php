@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container">
     <h2>Edit Data Paket</h2>
@@ -18,7 +18,8 @@
         </div>
         <div class="form-group">
             <label for="nama_paket">Nama Paket</label>
-            <input type="text" class="form-control" id="nama_paket" name="nama_paket" value="{{ $paket->nama_paket }}" required>
+            <input type="text" class="form-control" id="nama_paket" name="nama_paket" value="{{ $paket->nama_paket }}"
+                required>
         </div>
         <div class="form-group">
             <label for="hotel_madinah">Hotel Madinah</label>
@@ -44,8 +45,8 @@
         </div>
         <div class="form-group">
             <label for="total_seat">Total Seat</label>
-            <input type="number" class="form-control" id="total_seat" name="total_seat"
-                value="{{ $paket->total_seat }}" required>
+            <input type="number" class="form-control" id="total_seat" name="total_seat" value="{{ $paket->total_seat }}"
+                required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

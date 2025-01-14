@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+{{-- @extends('layouts.app') --}}
+@extends('master.master')
 @section('content')
 <div class="container mt-4">
     <div class="row mb-4">
@@ -17,14 +17,18 @@
         <div class="mb-3">
             <label for="role" class="form-label">Role</label>
             <select name="role" id="role" class="form-select" required>
-                <option value="Karyawan Pusat" {{ $karyawan->role == 'Karyawan Pusat' ? 'selected' : '' }}>Karyawan Pusat</option>
-                <option value="Pimpinan Cabang" {{ $karyawan->role == 'Pimpinan Cabang' ? 'selected' : '' }}>Pimpinan Cabang</option>
-                <option value="Karyawan Cabang" {{ $karyawan->role == 'Karyawan Cabang' ? 'selected' : '' }}>Karyawan Cabang</option>
+                <option value="Karyawan Pusat" {{ $karyawan->role == 'Karyawan Pusat' ? 'selected' : '' }}>Karyawan
+                    Pusat</option>
+                <option value="Pimpinan Cabang" {{ $karyawan->role == 'Pimpinan Cabang' ? 'selected' : '' }}>Pimpinan
+                    Cabang</option>
+                <option value="Karyawan Cabang" {{ $karyawan->role == 'Karyawan Cabang' ? 'selected' : '' }}>Karyawan
+                    Cabang</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="cabang_id" class="form-label">Cabang</label>
-            <input type="number" name="cabang_id" class="form-control" id="cabang_id" value="{{ $karyawan->cabang_id }}">
+            <input type="number" name="cabang_id" class="form-control" id="cabang_id"
+                value="{{ $karyawan->cabang_id }}">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -40,7 +44,8 @@
         </div>
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" id="username" value="{{ $karyawan->username }}" required>
+            <input type="text" name="username" class="form-control" id="username" value="{{ $karyawan->username }}"
+                required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
