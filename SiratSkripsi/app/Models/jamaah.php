@@ -34,7 +34,6 @@ class Jamaah extends Model
         return $this->belongsTo(Paket::class, 'id_paket');
     }
 
-
     public function perusahaan()
     {
         return $this->belongsTo(Perusahaan::class, 'id_perusahaan');
