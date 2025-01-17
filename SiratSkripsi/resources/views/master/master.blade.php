@@ -130,6 +130,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/paket') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>Paket</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('/fasilitas') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>Fasilitas</p>
