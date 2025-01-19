@@ -35,18 +35,30 @@ class FasilitasController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data
-        $validatedData = $request->validate([
-            'id_paket' => 'required|exists:pakets,id',
-            'peralatan' => 'required|string|max:255',
-            'keterangan' => 'nullable|string|max:255',
-        ]);
+    // Validasi data
+    $validatedData = $request->validate([
+        'id_paket' => 'required|exists:pakets,id',
+        'peralatan' => 'required|array',
+        'peralatan.*' => 'required|string|max:255',
+        'keterangan' => 'nullable|array',
+        'keterangan.*' => 'nullable|string|max:255',
+    ]);
 
-
-        Fasilitas::create($validatedData);
+    try {
+        foreach ($validatedData['peralatan'] as $index => $peralatan) {
+            Fasilitas::create([
+                'id_paket' => $validatedData['id_paket'],
+                'peralatan' => $peralatan,
+                'keterangan' => $validatedData['keterangan'][$index] ?? null,
+            ]);
+        }
 
         return redirect()->route('fasilitas.index')->with('success', 'Fasilitas berhasil ditambahkan.');
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => $e->getMessage()]);
     }
+}
+
 
     /**
      * Display the specified resource.

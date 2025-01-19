@@ -36,7 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::middleware(['auth','verified','cekrole:admin'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::resource('jamaah', JamaahController::class);
     Route::resource('paket', PaketController::class);
     Route::resource('pembayaran', PembayaranController::class);

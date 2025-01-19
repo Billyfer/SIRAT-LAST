@@ -44,6 +44,7 @@
             <label for="pdf_nib" class="form-label">PDF NIB</label>
             <input type="file" name="pdf_nib" class="form-control">
         </div>
+        
         <div class="mb-3">
             <label for="pdf_akta_cabang" class="form-label">PDF Akta Cabang</label>
             <input type="file" name="pdf_akta_cabang" class="form-control">
