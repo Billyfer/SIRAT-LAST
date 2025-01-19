@@ -44,6 +44,7 @@
                     <label for="total_seat" class="form-label">Total Seat</label>
                     <input type="number" class="form-control" id="total_seat" name="total_seat" required>
                 </div>
+
                 <div class="mb-3">
                     <label for="total_seat" class="form-label">Jenis Paket</label>
                     <input type="number" class="form-control" id="jenis_paket" name="jenis_paket" required>

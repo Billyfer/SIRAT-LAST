@@ -62,6 +62,22 @@
             <label for="kartu_keluarga" class="form-label">Kartu Keluarga</label>
             <input type="file" name="kartu_keluarga" class="form-control" id="kartu_keluarga" accept="image/*,.pdf">
         </div>
+        <div class="mb-3">
+            <label for="ktp" class="form-label">KTP</label>
+            <input type="file" name="ktp" class="form-control" id="ktp" accept="image/*,.pdf">
+        </div>
+        <div class="mb-3">
+            <label for="surat_kesehatan" class="form-label">Surat Kesehatan</label>
+            <input type="file" name="surat_kesehatan" class="form-control" id="surat_kesehatan" accept="image/*,.pdf">
+        </div>
+        <div class="mb-3">
+            <label for="visa" class="form-label">Visa</label>
+            <input type="file" name="visa" class="form-control" id="visa" accept="image/*,.pdf">
+        </div>
+        <div class="mb-3">
+            <label for="surat_pendukung" class="form-label">Surat Pendukung</label>
+            <input type="file" name="surat_pendukung" class="form-control" id="surat_pendukung" accept="image/*,.pdf">
+        </div>
         <!-- Additional fields remain unchanged -->
         <button type="submit" class="btn btn-success">Submit</button>
     </form>

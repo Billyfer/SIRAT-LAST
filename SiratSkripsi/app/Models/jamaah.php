@@ -25,7 +25,6 @@ class Jamaah extends Model
         'surat_kesehatan',
         'visa',
         'surat_pendukung',
-        'referrals',
     ];
 
 

@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('surat_kesehatan')->nullable();
             $table->string('visa')->nullable();
             $table->string('surat_pendukung')->nullable();
-            $table->string(column: 'referrals')->nullable();
         });
     }
 

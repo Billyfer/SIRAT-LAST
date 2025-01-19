@@ -28,6 +28,8 @@ class JamaahController extends Controller
 
     public function store(Request $request)
     {
+
+
         $request->validate([
             'id_paket' => 'required|exists:pakets,id',
             'id_perusahaan' => 'required|exists:perusahaans,id',
